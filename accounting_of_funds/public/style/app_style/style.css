@@ -1,0 +1,142 @@
+/*adaptive footer*/
+html{
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    color: #fff;
+    /* Растягиваем body по высоте html */
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+/* nav */
+.nav_l {
+    width: 100%;
+    background-color: rgb(159, 245, 148);
+    color: white;
+}
+
+/* content */
+.content_greeting {
+    margin: auto;
+}
+
+.card_user {
+    min-height: 25em;
+}
+
+.create_textarea {
+    resize: none !important;
+}
+
+/* footer */
+.footer_l {
+    background-color: rgb(159, 245, 148);
+    color: black;
+    height: 125px;
+}
+
+.content_f a {
+    color: black;
+    text-decoration: none;
+}
+
+/* media query */
+
+@media all and (max-width: 402px){
+
+    .footer-content_position{
+        text-align: center;
+    }
+
+    .content_f{
+        padding-top: 10px;
+    }
+
+    .social-link_adaptive{
+        padding-top: 10px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .cost_border {
+        border-right: 1px solid gainsboro;
+    }
+
+    .nav_border {
+        border-right: 1px solid black;
+        border-left: 1px solid black;
+    }
+
+    .usHome_border {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .cost_border {
+        border-bottom: 1px solid gainsboro;
+    }
+
+    .nav_border {
+        border: none;
+    }
+
+    .usHome_border {
+        display: none !important;
+    }
+
+    .footer_l {
+        height: 220px;
+    }
+}
+
+
+/*slider*/
+
+.slider_one{
+    max-width: 690px !important;
+}
+
+.slider-card{
+    max-width: 100%;
+}
+
+.slider-card .card{
+    max-width: 690px !important;
+}
+
+.slick-next{
+    right: -2px !important;
+}
+
+.slick-next:before{
+    content: '>' !important;
+}
+
+.slick-prev{
+    left: -2px !important;
+    z-index: 9;
+}
+
+.slick-prev:before{
+    content: '<' !important;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: green !important;
+    background-color: rgb(159, 245, 148);
+    border: 1px solid dimgrey;
+}
+
+.slick-prev:before{
+    border-left: 1px solid rgb(159, 245, 148);
+}
+
+.slick-next:before{
+    border-right: 1px solid rgb(159, 245, 148);
+}
+/*slider*/
