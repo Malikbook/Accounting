@@ -2,7 +2,7 @@
 
 @section('app_content')
     @guest
-    <div style="margin-bottom: -5px;" class="container my-auto content_l d-flex justify-content-center align-content-center content_greeting">
+    <div style="margin-bottom: -5px;" class="container content-bg my-2 content_l d-flex justify-content-center align-content-center content_greeting">
         <div class="text-center mt-5">
             <h2>Hello friends!</h2>
             <p>
@@ -34,43 +34,158 @@
         </div>
     </div>
     @else
-    <div class="container d-flex justify-content-center slider_one mt-5">
+
+    <div class="container text-center content-bg mt-5">
         @if($results != null)
-            <div class="slider-card">
-            @forelse($results as $result)
-                    <div class="card my-2 justify-content-center bg-secondary" style="max-width: 55em; margin: auto;">
 
-                        <div class="card-header my-1 bg-white">Title: {{$result->title}} <br>
-                            Added:
+            <h3>Comparison of the current month relative to the previous ones</h3>
+            <div class="mb-5" id="your-id" style="height: 400px"></div>
 
-                            @if($result->created_at == NULL)
-                                Not known...
-                            @else
-                                {{$result->created_at}}
-                            @endif
+            <script>
+                document.addEventListener("DOMContentLoaded", function(){
+                    // Create liteChart.js Object
+                    let d = new liteChart("chart", {
+                        axisX: {
+                            show: true,
+                            color: "#000409",
+                            width: 2,
+                            value: '₴',
+                        },
+                        axisY: {
+                            show: true,
+                            color: "#010409",
+                            width: 2,
+                            value: "",
+                            minValue: 0,
+                            maxValue: 0,
+                        },
+                        fill: null,
+                        gridX: {
+                            show: true,
+                            interval: 1500,
+                            fill: 1,
+                            label: {
+                                show: true
+                            },
+                            stroke:"#000305",
+                            width:2,
+                            dasharray:"0 10.04",
+                            linecap:"round",
+                        },
+                        gridY: {
+                            show: false,
+                        },
+                        line: {
+                            width: 2,
+                            style: "straight",
+                            shadow: true,
+                        },
+                        point: {
+                            show: true,
+                            radius: 4,
+                            strokeWidth: 3,
+                            stroke: "#0e0101", // null or color by hex/rgba
+                        }
+                    });
 
-                            <div class="card-body text-success">
-                                <b style="font-size: 50px;" class="d-block card-title text-center my-2">{{$result->cost_amount}} &#x20b4;</b>
-                                @if($result->description != null)
-                                    <p><i style="font-size: 25px;" class="card-text text-secondary">{{$result->description}}</i></p>
+
+                    // Set labels - count
+                    let one = 1;
+                    let two = 1;
+
+                    <?php static $one = 1 ?>
+                    <?php static $two = 1 ?>
+
+                        @foreach($results['one'] as $res)
+                            <?php $one++ ?>
+                        @endforeach
+
+                        @foreach($results['two'] as $res)
+                            <?php $two++ ?>
+                        @endforeach
+                    // Set labels
+                    d.setLabels([
+                        @if($one > $two)
+                            @foreach($results['one'] as $res)
+                                one++,
+                            @endforeach
+                        @else
+                                @foreach($results['two'] as $res)
+                                    two++,
+                                @endforeach
+                        @endif
+                    ]);
+
+                    // Set legends and values
+                    d.addLegend({"name": "{{$results['one'][0]->month}}", "stroke": "#4a7efa", "fill": "#315afc", "values": [@foreach($results['one'] as $res) {{$res->cost_amount}},  @endforeach]});
+                    d.addLegend({"name": "Previous Mass", "stroke": "#fc9c3b", "fill": "#eeb100", "values": [@foreach($results['two'] as $res) {{$res->cost_amount}}, @endforeach]});
+
+                    // Inject chart into DOM object
+                    let div = document.getElementById("your-id");
+                    d.inject(div);
+
+                    // Draw
+                    d.draw();
+                });
+            </script>
+
+            <h3>Details of expenses for the current month:</h3>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                @forelse($results['one'] as $result)
+                        <div class="card swiper-slide my-2 justify-content-center bg-secondary" style="max-width: 55em; margin: auto;">
+
+                            <div class="card-header my-1 bg-white">Title: {{$result->title}} <br>
+                                Added:
+
+                                @if($result->created_at == NULL)
+                                    Not known...
                                 @else
-                                    <p><i style="font-size: 25px;" class="card-text text-secondary">No description...</i></p>
+                                    {{$result->created_at}}
                                 @endif
+
+                                <div class="card-body text-success">
+                                    <b style="font-size: 50px;" class="d-block card-title text-center my-2">{{$result->cost_amount}} &#x20b4;</b>
+                                    @if($result->description != null)
+                                        <p><i style="font-size: 25px;" class="card-text text-secondary">{{$result->description}}</i></p>
+                                    @else
+                                        <p><i style="font-size: 25px;" class="card-text text-secondary">No description...</i></p>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-            @empty
-                <div style="margin-bottom: -15px;" class="card pt-5 mt-5 mb-n5 justify-content-center bg-warning" style="max-width: 55em; margin: auto;">
-                    <div class="card-header bg-white">Empty
+                @empty
+                    <div style="margin-bottom: -15px;" class="card pt-5 mt-5 mb-n5 justify-content-center bg-warning" style="max-width: 55em; margin: auto;">
+                        <div class="card-header bg-white">Empty
 
-                        <div class="card-body text-warning text-center">
-                            <p class="font-weight-bold">Sorry {{Auth::user()->name}}, but you haven't added any costs yet.</p>
+                            <div class="card-body text-warning text-center">
+                                <p class="font-weight-bold">Sorry {{Auth::user()->name}}, but you haven't added any costs yet.</p>
+                            </div>
+
                         </div>
-
                     </div>
+                @endforelse
                 </div>
-            @endforelse
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+                <script>
+                    $(document).ready(function (){
+                        var mySwiper = new Swiper('.swiper-container', {
+                            // Optional parameters
+                            centeredSlides: true,
+                            loop: false,
+
+                            // Navigation arrows
+                            navigation: {
+                                nextEl: '.swiper-button-next',
+                                prevEl: '.swiper-button-prev',
+                            },
+                        });
+                    });
+                </script>
             </div>
         @else
                 <div style="margin-bottom: -15px;" class="card pt-5 mt-5 mb-n5 justify-content-center bg-warning" style="max-width: 55em; margin: auto;">

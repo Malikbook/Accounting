@@ -20,6 +20,10 @@
     <!-- Styles -->
     <link href="{{ asset( 'style/app_style/style.css' ) }}" rel="stylesheet">
     <link href="{{ asset('style/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -79,16 +83,16 @@
         @yield('content')
     </main>
 
-    <footer class="row mx-0 pt-sm-4 footer_l">
+    <footer class="row mx-0 pt-2 pt-sm-4 pt-md-0 footer_l">
         <div class="container footer-content_position">
-            <div class="row mx-0 justify-content-center justify-content-sm-between">
+            <div class="row mx-0 my-4 justify-content-center justify-content-sm-between">
                 <div class="content_f text-nowrap mr-0 mr-md-2">
                     <span class="text-nowrap">{{__('Write my:')}} <a class="nav-link p-0" href="{{ route('crate_mail') }}">vashchuk98@icloud.com</a></span>
                 </div>
                 <div class="social-link_adaptive ml-0 ml-md-2">
-                    <a href="https://www.facebook.com/profile.php?id=100005710125709" style="font-size: 40px;" class="fab fa-facebook text-decoration-none text-primary"></a>
-                    <a href="https://www.instagram.com/oleksii_vashchuk/" style="font-size: 43px;" class="fab fa-instagram text-decoration-none mx-2 text-danger"></a>
-                    <a href="https://t.me/malik_alexxey" style="font-size: 40px;" class="fab fa-telegram text-decoration-none text-info"></a>
+                    <a href="https://www.facebook.com/profile.php?id=100005710125709" style="font-size: 40px;" class="fab fa-facebook text-decoration-none"></a>
+                    <a href="https://www.instagram.com/oleksii_vashchuk/" style="font-size: 43px;" class="fab fa-instagram text-decoration-none mx-2"></a>
+                    <a href="https://t.me/malik_alexxey" style="font-size: 40px;" class="fab fa-telegram text-decoration-none"></a>
                 </div>
             </div>
         </div>
@@ -97,6 +101,8 @@
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="{{ asset('style/js/bootstrap.min.js') }}"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="{{asset('style/js/liteChart.js')}}"></script>
     <script src="{{ asset('style/js/main.js')  }}"></script>
 </body>
 </html>

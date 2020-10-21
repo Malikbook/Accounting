@@ -61,11 +61,13 @@ class ControlResours extends Controller
             return view('templates.home_view');
 
         }else{
+
             $req = (object) [
                 'title' => $request['title'],
                 'amount' => (float) $request['amount'],
                 'desc' => $request['desc']
             ];
+
 
             return view('templates.home_view', ['results' => \App\Classes\Sample_by_user::sample(),
             'req' => new \App\Classes\Add_amount($req)]);

@@ -5,19 +5,78 @@ html{
 
 body {
     margin: 0;
-    color: #fff;
+    /*color: #fff;*/
     /* Растягиваем body по высоте html */
     min-height: 100%;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    background: url("https://previews.123rf.com/images/bluebay/bluebay1504/bluebay150400181/39170672-stock-market-chart.jpg") no-repeat center top fixed;
+    position: relative;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: -1;
+}
+
+body::before{
+    content: '';
+    position: absolute;
+    background: rgba(1,1,1,0.5);
+    opacity: 85%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.container{
+    padding: 0 !important;
 }
 
 /* nav */
 .nav_l {
     width: 100%;
-    background-color: rgb(159, 245, 148);
-    color: white;
+    background-color: rgba(3, 43, 246, 0.7);
+    color: white !important;
 }
+
+.navbar-brand{
+    padding: 5px;
+    border: 0.5px solid white;
+    border-radius: 2px;
+    color: white !important;
+    cursor: pointer;
+}
+
+.navbar-brand:hover{
+    color: #b3d7ff !important;
+    border-color: #b3d7ff;
+}
+
+.nav-item > a {
+    color: white !important;
+}
+
+.nav-item > a:hover {
+    color: #b3d7ff !important;
+    transition: all 0.5s ;
+}
+
+.navbar-toggler-icon{
+    color: white !important;
+    background-color: white !important;
+    border-radius: 2px;
+}
+
+@media all and (min-width: 768px){
+    .nav-item > a:hover {
+        border-bottom: 0.5px solid #b3d7ff;
+        padding-bottom: 0;
+    }
+}
+
 
 /* content */
 .content_greeting {
@@ -32,16 +91,91 @@ body {
     resize: none !important;
 }
 
+.content-bg{
+    background-color: rgba(253, 252, 252, 0.9);
+    margin-bottom: 20px;
+    padding: 20px 0;
+    z-index: 9;
+    border: 0.1px solid transparent;
+    border-radius: 10px;
+}
+
+.charts-title{
+    background-color: rgba(253, 252, 252, 0.9);
+    border: 0.1px solid transparent;
+    border-radius: 10px;
+}
+
+.amount-wrap-none{
+    white-space: nowrap;
+}
+
+@media all and (max-width: 653px){
+
+    .card-link-months *:not('h2'){
+        font-size: 14px;
+    }
+}
+
 /* footer */
 .footer_l {
-    background-color: rgb(159, 245, 148);
-    color: black;
-    height: 125px;
+    background-color: rgba(3, 43, 246, 0.7);
+    color: white !important;
+    z-index: 9;
 }
 
 .content_f a {
-    color: black;
+    color: white;
     text-decoration: none;
+    padding-bottom: 5px !important;
+}
+
+.content_f a:hover{
+    color: #b3d7ff;
+    padding-bottom: 0 !important;
+    border-bottom: 0.5px solid #b3d7ff;
+    transition: all 0.5mss;
+}
+
+.footer_l > hr{
+    background-color: white !important;
+}
+
+.fa-facebook {
+    color: white !important;
+}
+
+.fa-facebook:hover {
+    background-color: white;
+    border: 1px solid #0047fa;
+    border-radius: 50%;
+    color: #0047fa !important;
+}
+
+.fa-instagram{
+    color: white !important;
+    border: 1px solid transparent;
+}
+
+.fa-instagram:hover{
+    color: #fd2d2d !important;
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 20%;
+    border-bottom: red;
+}
+
+.fa-telegram{
+    color: white !important;
+    border: 1px solid transparent;
+    border-radius: 50%;
+}
+
+.fa-telegram:hover{
+    color: #3fb0ff !important;
+    background-color: white;
+    border: 1px solid #3fb0ff;
+    border-radius: 50%;
 }
 
 /* media query */
@@ -76,10 +210,14 @@ body {
     }
 }
 
-@media screen and (max-width: 800px) {
+@media all and (max-width: 991px){
     .cost_border {
         border-bottom: 1px solid gainsboro;
+        border-right: none;
     }
+}
+
+@media screen and (max-width: 800px) {
 
     .nav_border {
         border: none;
@@ -89,54 +227,22 @@ body {
         display: none !important;
     }
 
-    .footer_l {
-        height: 220px;
+}
+
+/*slider*/
+.swiper-container {
+    max-width: 690px;
+    width: auto;
+    height: fit-content;
+}
+
+@media all and (max-width: 574px){
+    .swiper-container{
+        width: fit-content;
+        max-width: 300px;
+    }
+
+    .swiper-slide{
+        max-width: 300px;
     }
 }
-
-
-/*slider*/
-
-.slider_one{
-    max-width: 690px !important;
-}
-
-.slider-card{
-    max-width: 100%;
-}
-
-.slider-card .card{
-    max-width: 690px !important;
-}
-
-.slick-next{
-    right: -2px !important;
-}
-
-.slick-next:before{
-    content: '>' !important;
-}
-
-.slick-prev{
-    left: -2px !important;
-    z-index: 9;
-}
-
-.slick-prev:before{
-    content: '<' !important;
-}
-
-.slick-prev:before, .slick-next:before {
-    color: green !important;
-    background-color: rgb(159, 245, 148);
-    border: 1px solid dimgrey;
-}
-
-.slick-prev:before{
-    border-left: 1px solid rgb(159, 245, 148);
-}
-
-.slick-next:before{
-    border-right: 1px solid rgb(159, 245, 148);
-}
-/*slider*/
