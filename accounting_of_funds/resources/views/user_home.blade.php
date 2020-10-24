@@ -26,19 +26,19 @@
                 <div class="card-footer row mx-0 justify-content-around">
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#updateAccount">
+                    <button type="button" class="col-10 my-2 my-md-0 col-sm-auto btn btn-success" data-toggle="modal" data-target="#updateAccount">
                         Editing user
                     </button>
 
                     <span style="font-size: 25px" class="usHome_border">|</span>
 
-                    <button type="button" id="{{$add_limit}}" class="btn btn-primary" data-toggle="modal" data-target="#add_limitSum">
+                    <button type="button" id="{{$add_limit}}" class="col-10 my-2 my-md-0 col-sm-auto btn btn-primary" data-toggle="modal" data-target="#add_limitSum">
                         Add Limit Sum
                     </button>
 
                     <span style="font-size: 25px" class="usHome_border">|</span>
 
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteAccount">
+                    <button type="button" class="col-10 my-2 my-md-0 col-sm-auto btn btn-danger" data-toggle="modal" data-target="#deleteAccount">
                         Delete account
                     </button>
 

@@ -36,7 +36,7 @@
     @else
 
     <div class="container text-center content-bg mt-5">
-        @if($results != null)
+        @if(($results != null) && (count($results['one']) != 0))
 
             <h3>Comparison of the current month relative to the previous ones</h3>
             <div class="mb-5" id="your-id" style="height: 400px"></div>

@@ -20,6 +20,8 @@ class ControlResours extends Controller
 
         }else if(new \App\Classes\Work_with_db == true){
 
+
+
             return view('templates.home_view', ['results' => \App\Classes\Sample_by_user::sample()]);
 
         }else{
@@ -68,9 +70,9 @@ class ControlResours extends Controller
                 'desc' => $request['desc']
             ];
 
+            new \App\Classes\Add_amount($req);
 
-            return view('templates.home_view', ['results' => \App\Classes\Sample_by_user::sample(),
-            'req' => new \App\Classes\Add_amount($req)]);
+            return view('templates.home_view', ['results' => \App\Classes\Sample_by_user::sample()]);
         }
     }
 

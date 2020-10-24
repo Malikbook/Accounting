@@ -127,14 +127,11 @@ body::before{
 .content_f a {
     color: white;
     text-decoration: none;
-    padding-bottom: 5px !important;
 }
 
 .content_f a:hover{
     color: #b3d7ff;
     padding-bottom: 0 !important;
-    border-bottom: 0.5px solid #b3d7ff;
-    transition: all 0.5mss;
 }
 
 .footer_l > hr{

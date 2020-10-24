@@ -33,7 +33,7 @@
         @endif
         @if(count($results) != 0)
                 @forelse($results['months'] as $costs)
-                    <div class="border border-primary col-5 my-2 mx-2">
+                    <div class="border border-primary bg-light col-10 col-md-5 my-2 mx-2">
                         <div style="font-size: 25px;" class="col-12 text-center border-bottom border-primary">
                             <i>Title:</i> {{$costs->title}}
                         </div>
